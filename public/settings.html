@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./transitions.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="./transitions.js" defer></script>
+    <style type="text/tailwindcss">
+        @theme {
+                /* Base */
+                --color-background: #000000; /* deep charcoal */
+                --color-surface: #101010; /* slightly lighter panel */
+                --color-surface-alt: #242424; /* alt surface untuk layering */
+                --color-text: #e5e5e5; /* soft white */
+                --color-text-secondary: #9ca3af; /* cool gray */
+
+                /* Accent modern */
+                --color-accent-cyan: #06b6d4; /* cyan neon */
+                --color-accent-violet: #7c3aed; /* violet vibrant */
+                --color-accent-lime: #84cc16; /* lime fresh */
+
+                /* Status */
+                --color-error: #f87171; /* soft red */
+                --color-warning: #fbbf24; /* amber */
+                --color-success: #34d399; /* emerald */
+
+                /* Extra modern touch */
+                --color-border: #0f0f0f; /* subtle border */
+                --color-highlight: #3b82f6; /* electric blue highlight */
+            }
+        </style>
+    <title>settings</title>
+</head>
+<body class="bg-background">
+    <div class="px-6 py-10">
+        <h1 class="text-3xl font-bold text-white bbh-hegarty-regular animate-slide-up">Settings</h1>
+        <p class="text-gray-400 mt-2 animate-slide-up delay-100">Configure your XOvalium experience</p>
+        
+        <div class="mt-8 space-y-4">
+            <div class="bg-surface border border-border p-4 rounded-2xl flex items-center justify-between animate-slide-up delay-200">
+                <div class="flex items-center space-x-4">
+                    <span class="material-symbols-outlined text-accent-cyan">notifications</span>
+                    <span class="text-white">Notifications</span>
+                </div>
+                <div class="w-12 h-6 bg-accent-violet/30 rounded-full relative">
+                    <div class="absolute right-1 top-1 w-4 h-4 bg-accent-violet rounded-full"></div>
+                </div>
+            </div>
+            
+            <div class="bg-surface border border-border p-4 rounded-2xl flex items-center justify-between animate-slide-up delay-300">
+                <div class="flex items-center space-x-4">
+                    <span class="material-symbols-outlined text-accent-lime">security</span>
+                    <span class="text-white">Privacy & Security</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-500">chevron_right</span>
+            </div>
+
+            <div class="bg-surface border border-border p-4 rounded-2xl flex items-center justify-between animate-slide-up delay-400">
+                <div class="flex items-center space-x-4">
+                    <span class="material-symbols-outlined text-accent-cyan">language</span>
+                    <span class="text-white">App Language</span>
+                </div>
+                <span class="text-accent-cyan text-sm">Indonesia</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-surface border border-border rounded-full shadow-xl px-6 py-3 flex space-x-6">
+        <a href="index.html">
+          <img src="https://files.catbox.moe/wp62fc.png" alt="Home" class="w-10 h-10 hover:opacity-80">
+        </a>
+        <a href="settings.html">
+          <img src="https://files.catbox.moe/nwnkp7.png" alt="settings" class="w-10 h-10 hover:opacity-80">
+        </a>
+      </nav>
+</body>
+</html>

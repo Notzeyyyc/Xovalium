@@ -7,7 +7,9 @@
         <meta name="description" content="A new web page" />
         <meta name="robots" content="index, follow" />
         <link rel="stylesheet" href="./fonts.css">
+        <link rel="stylesheet" href="./transitions.css">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="./transitions.js" defer></script>
         <title>Document</title>
         <style type="text/tailwindcss">
             @theme {
@@ -36,47 +38,48 @@
     </head>
     <body class="bg-background sm:p-6 md:p-8">
       <nav class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-surface border border-border rounded-full shadow-xl px-6 py-3 flex space-x-6">
-        <a href="#">
+        <a href="index.html">
           <img src="https://files.catbox.moe/wp62fc.png" alt="Home" class="w-10 h-10 hover:opacity-80">
         </a>
-        <a href="#">
+        <a href="settings.html">
           <img src="https://files.catbox.moe/nwnkp7.png" alt="settings" class="w-10 h-10 hover:opacity-80">
+          <p class="text-white text-sm font-mono">Settings</p>
         </a>
       </nav>
-      <div class="mt-18 flex items-center justify-center">
+      <div class="mt-18 flex items-center justify-center animate-scale-in">
         <div class="relative transform -translate-y-12 w-112 rounded-xl shadow-lg overflow-hidden">
           <img src="https://files.catbox.moe/ghoe10.png" alt="Potrait" class="h-auto w-full object-cover">
           <div class="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/78 to-transparent"></div>
         </div>
       </div>
-      <div class="px-6">
+      <div class="px-6 animate-slide-up delay-100">
         <h2 class="text-2xl bbh-hegarty-regular text-white">XOvalium</h2>
         <p class="mt-2 text-sm font-mono text-gray-300">Powered By Debian</p>
       </div>
       <div class="mt-6 flex items-center justify-center">
         <div class="grid grid-cols-2 gap-4 w-110">
-        <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start">
+        <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start animate-slide-up delay-200">
           <div class="flex items-center mb-3">
             <span class="material-symbols-outlined text-white mr-2">developer_board</span>
                 <p class="text-white font-semibold">Status</p>
               </div>
               <p class="text-pink-600 font-mono text-sm">{ONLINE}</p>
            </div>
-           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start">
+           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start animate-slide-up delay-300">
              <div class="flex items-center mb-3">
                <span class="material-symbols-outlined text-white mr-2">error</span>
                <p class="text-white font-semibold">Version</p>
              </div>
              <p class="text-pink-600 font-mono text-sm">1.0.0</p>
            </div>
-           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start">
+           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start animate-slide-up delay-400">
              <div class="flex items-center mb-3">
                <span class="material-symbols-outlined text-white mr-2">language</span>
                <p class="text-white font-semibold">Language</p>
              </div>
              <p class="text-pink-600 font-mono text-sm">id-ID</p>
            </div>
-           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start">
+           <div class="h-23 bg-surface rounded-2xl overflow-hidden p-3 flex flex-col items-start animate-slide-up delay-500">
              <div class="flex items-center mb-3">
                <span class="material-symbols-outlined text-white mr-2">deployed_code</span>
                <p class="text-white font-semibold">ID Kernel</p>
