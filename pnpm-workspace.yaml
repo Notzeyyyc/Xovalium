@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - '@rexxhayanasi/elaina-baileys'
+  - better-sqlite3
+  - protobufjs

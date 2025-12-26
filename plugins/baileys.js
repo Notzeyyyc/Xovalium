@@ -4,7 +4,7 @@ import {
     DisconnectReason, 
     version, 
     makeCacheableSignalKeyStore 
-} from "@angstvorfrauen/baileys";
+} from "@rexxhayanasi/elaina-baileys";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
 import chalk from "chalk";

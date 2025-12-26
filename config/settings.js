@@ -7,7 +7,10 @@ export const config = {
         name: "XOVALIUM DASHBOARD",
         version: "1.2.0",
         author: "notzeyyyc",
-        urlWeb: "http://localhost",
-        port: 3000
+        urlWeb: "172.19.118.89",
+        port: 8000
+    },
+    db: {
+        mongodb_uri: "mongodb+srv://admin:password@cluster.mongodb.net/owa-web?retryWrites=true&w=majority"
     }
 }

@@ -2,7 +2,12 @@ import "./server.js";
 import { connectbot } from "./config/auth.js";
 import { config } from "./config/settings.js";
 import { connectToWhatsApp } from "./plugins/baileys.js";
+import connectDB from "./backend/db.js";
+import User from "./backend/models/user.js";
 import os from "os";
+
+// Connect to MongoDB
+connectDB();
 
 const bot = connectbot();
 const activeSessions = new Map();
@@ -50,6 +55,9 @@ async function sendStartMessage(chatId, username) {
                     ],
                     [
                         { text: "💎 Add VIP", callback_data: "addvip" }
+                    ],
+                    [
+                        { text: "🚀 Open Dashboard (Mini App)", web_app: { url: `https://${config.app.urlWeb}:${config.app.port}` } }
                     ]
                 ]
             }
@@ -99,6 +107,23 @@ bot.on("message", async (msg) => {
     if (!text) return;
 
     if (text === "/start") {
+        // Simple User Login/Register System
+        try {
+            await User.findOneAndUpdate(
+                { telegramId: chatId.toString() },
+                { 
+                    username: msg.from.username,
+                    firstName: msg.from.first_name,
+                    lastName: msg.from.last_name,
+                    isAuth: true,
+                    lastLogin: new Date()
+                },
+                { upsert: true, new: true }
+            );
+        } catch (err) {
+            console.error("Error saving user:", err);
+        }
+        
         sendStartMessage(chatId, username);
     } 
     
