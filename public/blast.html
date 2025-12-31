@@ -35,30 +35,95 @@
             }
         </style>
 </head>
-<body class="bg-background">
-    <nav class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-surface border border-border rounded-full shadow-xl px-6 py-3 flex space-x-6">
-        <a href="index.html">
-          <span class="material-symbols-outlined text-white mt-2">home</span>
-        </a>
-        <a href="blast.html">
-          <span class="material-symbols-outlined text-white mt-2">android</span>        </a>
-        <a href="membership.html">
-          <span class="material-symbols-outlined text-white mt-2">card_membership</span>
-        </a>
-        <a href="settings.html">
-          <span class="material-symbols-outlined text-white mt-2">settings</span>
-        </a>
-      </nav>
-    <div class="mt-18 flex items-center justify-center animate-scale-in">
-        <div class="relative transform -translate-y-12 w-112 rounded-xl shadow-lg overflow-hidden">
-          <img src="https://files.catbox.moe/ghoe10.png" alt="Potrait" class="h-auto w-full object-cover">
-          <div class="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-black/78 to-transparent"></div>
+<body class="bg-background min-h-screen text-white overflow-x-hidden">
+    <!-- Header -->
+    <div class="sticky top-0 z-40 bg-background/60 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center w-full">
+            <div>
+                <h1 class="text-xl font-bold text-white tracking-tight">Blast Control</h1>
+                <p class="text-[10px] font-mono text-pink-500/80 uppercase tracking-widest">Automation Engine</p>
+            </div>
+            <div id="adminContainer"></div>
         </div>
-      </div>
-      <div class="px-6 animate-slide-up delay-100">
-        <h2 class="text-2xl bbh-hegarty-regular text-white">XOvalium</h2>
-        <p class="mt-2 text-sm font-mono text-gray-300">Powered By Debian</p>
-        <div id="userDisplay"></div>
-      </div>
+
+    <!-- Scrollable Content -->
+    <div class="pb-32 px-6 pt-6 max-w-2xl mx-auto min-h-screen">
+            
+            <div class="relative group rounded-3xl overflow-hidden shadow-2xl mb-8 animate-slide-up">
+                <img src="https://files.catbox.moe/ghoe10.png" alt="Hero" class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+            </div>
+
+            <div class="px-2 animate-slide-up delay-100">
+                <h2 class="text-2xl bbh-hegarty-regular text-white">Neural Hub</h2>
+                <p class="mt-2 text-xs font-mono text-gray-400">Advanced task automation & message broadcasting system.</p>
+                <div id="userDisplay" class="mt-6"></div>
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 gap-4">
+                <a href="/blast/index.html" class="bg-surface-alt/40 border border-white/5 p-6 rounded-3xl flex items-center justify-between group hover:bg-surface-alt/60 transition-all animate-slide-up delay-200 no-underline">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-500 border border-pink-500/20 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">rocket_launch</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-white">Advanced Blast</p>
+                            <p class="text-[10px] text-gray-500 italic">Promote & Target Controls</p>
+                        </div>
+                    </div>
+                    <div class="bg-pink-600 text-white text-[10px] font-black px-4 py-2 rounded-xl active:scale-95 transition-all">ENTER</div>
+                </a>
+            </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50">
+            <nav class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl px-8 py-4 flex justify-between items-center shadow-2xl">
+                <a href="index.html" class="flex flex-col items-center gap-1 group active:scale-90 opacity-50 hover:opacity-100 transition-all">
+                    <span class="material-symbols-outlined text-white text-2xl">home</span>
+                    <span class="text-[8px] font-bold text-white uppercase">Home</span>
+                </a>
+                <a href="blast.html" class="flex flex-col items-center gap-1 group active:scale-90 transition-all">
+                    <span class="material-symbols-outlined text-pink-500 text-2xl drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">smart_toy</span>
+                    <span class="text-[8px] font-bold text-pink-500 uppercase">Blast</span>
+                </a>
+                <a href="membership.html" class="flex flex-col items-center gap-1 group active:scale-90 opacity-50 hover:opacity-100 transition-all">
+                    <span class="material-symbols-outlined text-white text-2xl">star_half</span>
+                    <span class="text-[8px] font-bold text-white uppercase">VIP</span>
+                </a>
+                <a href="settings.html" class="flex flex-col items-center gap-1 group active:scale-90 opacity-50 hover:opacity-100 transition-all">
+                    <span class="material-symbols-outlined text-white text-2xl">tune</span>
+                    <span class="text-[8px] font-bold text-white uppercase">Setup</span>
+                </a>
+            </nav>
+        </div>
+
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 0px; }
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const res = await fetch('/api/user/me');
+                const data = await res.json();
+                if (data.success && data.user && data.user.role === 'owner') {
+                    // Admin Container
+                    document.getElementById('adminContainer').innerHTML = `
+                        <a href="/admin/index.html" class="w-10 h-10 rounded-full border border-indigo-500/30 bg-indigo-500/10 flex items-center justify-center text-indigo-400 hover:bg-indigo-500/20 transition-all">
+                            <span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+                        </a>
+                    `;
+                }
+            } catch(e) {}
+        });
+    </script>
 </body>
 </html>

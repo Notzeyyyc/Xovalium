@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-black: #000000;
+    --primary: #f43f5e; /* Rose 500 */
+    --primary-glow: rgba(244, 63, 94, 0.3);
+    --surface: #0a0a0a;
+    --border: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
+    --text-dim: #666666;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: var(--bg-black);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.header {
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.content {
+    padding: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.action-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s;
+}
+
+.action-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.icon-box {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+input, textarea {
+    width: 100%;
+    background: #111;
+    border: 0.5px solid #222;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    color: #fff;
+    font-size: 0.85rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    background: #151515;
+}
+
+.btn-trigger {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    transition: all 0.2s;
+}
+
+.btn-trigger:active {
+    transform: scale(0.98);
+    filter: brightness(0.9);
+}
+
+.btn-trigger:disabled {
+    background: #222;
+    color: #444;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}

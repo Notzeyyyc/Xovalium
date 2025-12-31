@@ -14,8 +14,9 @@ import fs from "fs";
  * Connect WhatsApp using Pairing Code
  * @param {string} sessionId - Unique ID for the session
  * @param {string} phoneNumber - Phone number with country code (e.g. 628xxx)
+ * @param {Function} onPairingCode - Optional callback for pairing code
  */
-export async function connectToWhatsApp(sessionId, phoneNumber) {
+export async function connectToWhatsApp(sessionId, phoneNumber, onPairingCode) {
     const sessionPath = `./sessions/${sessionId}`;
     if (!fs.existsSync(sessionPath)) {
         fs.mkdirSync(sessionPath, { recursive: true });
@@ -47,6 +48,7 @@ export async function connectToWhatsApp(sessionId, phoneNumber) {
         setTimeout(async () => {
             try {
                 const code = await sock.requestPairingCode(cleanedNumber);
+                if (onPairingCode) onPairingCode(code);
                 console.log(chalk.yellow(`\n[ PAIRING CODE ] Session: ${sessionId}`));
                 console.log(chalk.black.bgYellow(` CODE: ${code} `));
                 console.log(chalk.yellow(`------------------------------\n`));

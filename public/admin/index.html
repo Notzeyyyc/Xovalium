@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XOV | Admin Intelligence</title>
+    <link rel="stylesheet" href="../fonts.css">
+    <link rel="stylesheet" href="../css/toast.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+</head>
+<body>
+    <div class="mobile-wrapper">
+        <!-- Native Header -->
+        <header class="admin-header">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="material-symbols-outlined" style="color: var(--primary); font-size: 1.5rem;">settings_system_daydream</span>
+                <h1>Admin Core</h1>
+            </div>
+            <a href="/" class="material-symbols-outlined" style="color: var(--text-secondary); text-decoration: none; font-size: 1.5rem;">close</a>
+        </header>
+
+        <!-- Segmented Control -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="membership">Users</button>
+            <button class="tab-btn" data-tab="terminal">Terminal</button>
+            <button class="tab-btn" data-tab="notifications">Broadcast</button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="admin-content custom-scrollbar">
+            
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-pane active">
+                <p class="section-title">System Pulse</p>
+                <div class="stat-grid">
+                    <div class="mini-card">
+                        <h4>Uptime</h4>
+                        <p class="val" id="uptime">...</p>
+                    </div>
+                    <div class="mini-card">
+                        <h4>Threads</h4>
+                        <p class="val" id="cpuCores">...</p>
+                    </div>
+                </div>
+                
+                <div class="mini-card" style="margin-bottom: 1.25rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h4>Memory Usage</h4>
+                        <p class="val" id="memUsage" style="font-size: 0.9rem;">...</p>
+                    </div>
+                    <div class="prog-wrapper">
+                        <div class="prog-fill" id="memBar"></div>
+                    </div>
+                </div>
+
+                <p class="section-title">Resource Analytics</p>
+                <div class="card-glass" style="height: 220px; padding: 1rem;">
+                    <canvas id="healthChart"></canvas>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Processor</h4>
+                    <p id="cpuModel" style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 600;">...</p>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="membership" class="tab-pane">
+                <p class="section-title">Identity Registry</p>
+                <div style="margin-bottom: 1.25rem; position: sticky; top: 0; z-index: 10; background: var(--bg-black); padding-bottom: 0.5rem;">
+                    <input type="text" id="userSearch" class="form-input" placeholder="Search Telegram ID..." style="margin-bottom: 0;">
+                </div>
+
+                <div id="userListBody">
+                    <!-- Dynamic User Cards -->
+                </div>
+            </div>
+
+            <!-- Terminal Tab -->
+            <div id="terminal" class="tab-pane">
+                <p class="section-title">Baileys Core Engine</p>
+                <div class="card-glass">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <div>
+                            <h2 style="font-size: 1.25rem; font-weight: 800;">Node Instance</h2>
+                            <p style="font-size: 0.7rem; color: var(--text-secondary);">Manage system socket connection</p>
+                        </div>
+                        <div id="botStatusTag" class="role-tag" style="background: rgba(255,55,95,0.1); color: #ff375f;">OFFLINE</div>
+                    </div>
+
+                    <div id="qrContainer" style="display: none; justify-content: center; background: white; padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                        <!-- QR Code will be here -->
+                        <div id="qrCode" style="width: 200px; height: 200px; background: #eee;"></div>
+                    </div>
+
+                    <div id="pairingContainer" style="display: none; text-align: center; margin-bottom: 1.5rem; background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 12px; border: 1px dashed var(--border);">
+                        <p style="font-size: 0.65rem; color: var(--text-secondary); text-transform: uppercase;">Pairing Code</p>
+                        <h3 id="pairingCode" style="font-size: 2rem; font-family: monospace; letter-spacing: 0.2em; color: var(--primary); margin: 0.5rem 0;">--------</h3>
+                        <p style="font-size: 0.6rem; color: #666;">Enter this code on your phone</p>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label">Phone Number (with/without +)</label>
+                        <input type="text" id="botPhoneNumber" class="form-input" placeholder="e.g. 628xxx" style="margin-bottom: 0; background: rgba(255,255,255,0.05);">
+                    </div>
+
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button id="btnConnectBot" class="btn-primary" style="flex: 1;">Connect Socket</button>
+                        <button id="btnLogoutBot" class="btn-primary" style="flex: 1; background: #2c2c2e; box-shadow: none;">Kill Session</button>
+                    </div>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Session Log</h4>
+                    <div id="botLogs" style="font-size: 0.65rem; font-family: monospace; color: #4ade80; height: 150px; overflow-y: auto; white-space: pre-wrap; margin-top: 0.5rem;">[ SYSTEM ] Log monitoring active...</div>
+                </div>
+            </div>
+
+            <!-- Broadcast Tab -->
+            <div id="notifications" class="tab-pane">
+                <p class="section-title">Transmission Control</p>
+                <div class="card-glass">
+                    <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Neural Alert</h2>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Send a global transmission to all active system dashboards.</p>
+                    
+                    <textarea id="notifMessage" class="form-input" rows="4" placeholder="Enter transmission content..."></textarea>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label class="section-title" style="display:block; padding:0; margin-bottom:0.5rem;">Severity Protocol</label>
+                        <select id="notifType" class="select-native" style="width: 100%;">
+                            <option value="info">System Info</option>
+                            <option value="success">Operation Success</option>
+                            <option value="warning">Potential Threat</option>
+                            <option value="error">Critical Failure</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-primary" id="saveNotif">Initiate Broadcast</button>
+                    
+                    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border);">
+                        <p class="section-title" style="padding:0;">Active Signal</p>
+                        <div id="currentNotifBox" class="mini-card" style="margin-top:0.75rem; font-size:0.8rem; line-height:1.4;">
+                            Waiting for signal...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/toast.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -8,7 +8,26 @@ export function connectbot() {
         process.exit(1);
     }
 
-    const bot = new TelegramBot(config.telegram.token, { polling: true });
+    const bot = new TelegramBot(config.telegram.token, { 
+        polling: {
+            interval: 300,
+            autoStart: true,
+            params: { timeout: 10 }
+        } 
+    });
+
+    // Handle Polling Errors (Fix ECONNRESET)
+    bot.on("polling_error", (error) => {
+        if (error.code === 'ECONNRESET') {
+            // Ignore common connection resets as the lib handles reconnecting
+            return;
+        }
+        console.warn(chalk.yellow(`[ TELEGRAM ] Polling Error: ${error.code} - ${error.message}`));
+    });
+
+    bot.on("error", (error) => {
+        console.error(chalk.red(`[ TELEGRAM ] Critical Error: ${error.message}`));
+    });
 
     console.log(chalk.blue(`
     ____  ___                  .__  .__               
